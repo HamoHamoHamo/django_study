@@ -11,7 +11,7 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField('제목', max_length=32)
     text = models.TextField('본문')
-    tags = models.ManyToManyField(Tag, verbose_name='태그', blank=True)
+    tags = models.ManyToManyField(Tag, verbose_name='태그', blank=True, null=True) #tag null이 불가능?
     thumbnail = models.ImageField(blank=True, upload_to="images", null=True)
 
     relation_posts = models.ManyToManyField('self', verbose_name='관련기사', blank=True)

@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
-    'search.apps.SearchConfig'
+    'search.apps.SearchConfig',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [

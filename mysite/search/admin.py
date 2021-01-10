@@ -11,14 +11,16 @@ class CommentAdmin(admin.ModelAdmin):
     inlines = [ReplyInline]
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'is_public', 'updated_at', 'created_at', 'title_len']
+    list_display = ['title', 'thumbnail_preview', 'is_public', 'updated_at', 'created_at', 'title_len']
     ordering = ('-created_at',)
     list_filter = ['is_public', 'tags']
     search_fields = ('title', 'text')
 
     def thumbnail_preview(self, obj):
-        return mark_safe('<img src="{}" style="width:100px; height:auto;">'.format(obj.thumbnail.url))
-    
+        if (obj.thumbnail):
+            return mark_safe('<img src="{}" style="width:100px; height:auto;">'.format(obj.thumbnail.url))    
+        else:
+            return mark_safe('<img src="{}" style="width:100px; height:auto;">'.format('/static/search/x.png'))
     thumbnail_preview.short_description = '프리뷰'
 
     def title_len(self, obj):
